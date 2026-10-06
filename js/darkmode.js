@@ -38,7 +38,7 @@ $(document).ready(function() {
             const body = document.querySelector('body');
             body.style.backgroundColor = '#f1f1f1';
             body.style.color = 'black';
-            body.style.backgroundImage= "url('/images/grass-background.jpg')";  
+            body.style.backgroundImage= "url('images/grass-background.jpg')";  
             const paragraphs = document.querySelectorAll('p');
             paragraphs.forEach(function(p) {
                 p.style.color = 'black';
@@ -70,7 +70,7 @@ $(document).ready(function() {
             localStorage.removeItem("darkModeOn");
         }
     }
-    if (localStorage.getItem('darkModeOn') == true) {
+    if (localStorage.getItem('darkModeOn') === 'true') {
         document.getElementById('darkModeCheckbox').checked = true; 
         var checked = document.getElementById('darkModeCheckbox').checked;
         updateDarkMode(checked);
@@ -79,5 +79,4 @@ $(document).ready(function() {
         var checked = document.getElementById('darkModeCheckbox').checked;
         updateDarkMode(checked);
     });
-    updateDarkMode();
 });

@@ -1,15 +1,15 @@
 // main.js
 
+// Clr data
+function openClrModal() {
+    document.getElementById('clr-data-model').style.display = 'flex';
+}
+
+function closeClrModal() {
+    document.getElementById('clr-data-model').style.display = 'none';
+}
+
 $(document).ready(function() {
-    // Clr data
-    function openClrModal() {
-        document.getElementById('clr-data-model').style.display = 'flex';
-    }
-
-    function closeClrModal() {
-        document.getElementById('clr-data-model').style.display = 'none';
-    }
-
     document.getElementById('clr-data-model').addEventListener('click', function(event) {
         if (event.target.classList.contains('cancel-btn')) {
             closeClrModal();
