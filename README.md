@@ -18,3 +18,6 @@ The clients themselves belong to their respective authors.
 
 > [!IMPORTANT]
 > Not affiliated with Eagtek, Eaglercraft, Mojang, Microsoft, or Minecraft.
+
+Some clients (1.9.4, 1.11.2, DragonX, PiClient, Eagler Reborn) come from
+[x8rr/Eaglercraft-Extras](https://github.com/x8rr/Eaglercraft-Extras) (AGPL-3.0).
