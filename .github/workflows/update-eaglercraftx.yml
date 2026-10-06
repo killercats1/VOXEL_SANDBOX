@@ -1,0 +1,64 @@
+# Downloads an official EaglercraftX 1.8 web build and replaces the Main
+# JS and WASM-GC clients with it. Run it from the Actions tab when a new
+# update (u54, u55, ...) is released: set the zip URL from the release post.
+name: Update EaglercraftX 1.8
+
+on:
+  workflow_dispatch:
+    inputs:
+      zip_url:
+        description: Web build zip from the release post
+        default: https://cdn.eaglercraft.ru/dl/1.8.8/web/u53_web.zip
+        required: true
+      dry_run:
+        description: Only list the zip contents, don't commit
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download and unpack
+        env:
+          ZIP_URL: ${{ inputs.zip_url }}
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 -o "$RUNNER_TEMP/web.zip" "$ZIP_URL"
+          unzip -q "$RUNNER_TEMP/web.zip" -d "$RUNNER_TEMP/web"
+          echo "Zip contents:"
+          (cd "$RUNNER_TEMP/web" && find . -not -path '*/lang/*' | sort)
+
+      - name: Replace Main clients
+        if: ${{ !inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          web="$RUNNER_TEMP/web"
+          js_dir=$(dirname "$(find "$web" -name classes.js -not -path '*/__MACOSX/*' | head -n1)")
+          wasm_dir=$(dirname "$(find "$web" -name assets.epw -not -path '*/__MACOSX/*' | head -n1)")
+          for d in "$js_dir" "$wasm_dir"; do
+            if [ "$d" = "." ] || [ ! -f "$d/index.html" ]; then
+              echo "::error::Couldn't find a client folder with index.html in the zip"; exit 1
+            fi
+          done
+          echo "JS build:   ${js_dir#$web/}"
+          echo "WASM build: ${wasm_dir#$web/}"
+          rsync -a --delete "$js_dir/" eagler-files/1.8/Main/
+          rsync -a --delete "$wasm_dir/" eagler-files/wasm/1.8/Main/
+
+      - name: Commit
+        if: ${{ !inputs.dry_run }}
+        env:
+          ZIP_URL: ${{ inputs.zip_url }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A eagler-files
+          if git diff --cached --quiet; then echo "Already up to date"; exit 0; fi
+          git commit -m "Update EaglercraftX 1.8 from $(basename "$ZIP_URL")"
+          git push
