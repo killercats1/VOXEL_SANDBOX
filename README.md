@@ -2,13 +2,13 @@
 
 A collection of Eaglercraft web clients, hosted on GitHub Pages.
 
-**Play:** https://killercats1.github.io/eaglercraft/
+**Play:** https://killercats1.github.io/VOXEL_SANDBOX/
 
 ## Hosting
 
 The site is plain static HTML served from the root of the `main` branch
 (Settings → Pages → Deploy from a branch → `main` / `(root)`).
-All paths are relative, so it works from the `/eaglercraft/` subpath.
+All paths are relative, so it works from the `/VOXEL_SANDBOX/` subpath.
 
 To add a client, put its files under `eagler-files/` and add an entry to
 `GROUPS` in `js/main.js`.
