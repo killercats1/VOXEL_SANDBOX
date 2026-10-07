@@ -2,164 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>EaglerCraftX</title>
-     <meta name="description" content="Eaglercraft Web Clients Site">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Eaglercraft, EaglercraftX, Eaglercraft WASM, EaglercraftX WASM, EaglercraftWASM, EaglercraftXWASM, Minecraft, Eaglercraft Modded, EaglercraftModded, Astra Client, Astra, Resent Client, Resent, EaglerForge Client, Eaglerforge, Starlike Client, Starlike, Prism Client, Prism, EaglyMC Client, EaglyMC, Minecraft Web, Minecraft Online, MinecraftWeb, MinecraftOnline, Sandbox, Fun, Game, Games, Offline, Offline Game, Offline Games, Minecraft 1.8, Minecraft 1-8, 1.8, 1-8, 1.8.8, 1.9, 1.9.4, 1.11, 1.11.2, 1.12, 1.12.2, DragonX, PiClient, Eagler Reborn">
-    <link rel="icon" type="image/x-icon" href="images/eaglercommunity.png">
+    <title>EaglerCraft</title>
+    <meta name="description" content="Play Minecraft 1.8 – 1.12 in your browser with Eaglercraft. No download needed.">
+    <link rel="icon" type="image/png" href="images/eaglercommunity.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script src="js/darkmode.js"></script>
-    <script src="js/main.js"></script>
-    
-    <meta property="og:title" content="Eaglercraft Client Collections" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://killercats1.github.io/eaglercraft/" />
-<meta property="og:image" content="https://killercats1.github.io/eaglercraft/images/eaglercommunity.png" />
-
-<meta property="og:description" 
-  content="Eaglercraft Client Collection Site. We have many clients to choose from!" />
-<meta property="og:site_name" content="Eaglercraft Client Collection Site" />
+    <meta property="og:title" content="EaglerCraft">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://killercats1.github.io/eaglercraft/">
+    <meta property="og:image" content="https://killercats1.github.io/eaglercraft/images/eaglercommunity.png">
+    <meta property="og:description" content="Play Minecraft 1.8 – 1.12 in your browser with Eaglercraft.">
+    <script>
+        try {
+            var t = localStorage.getItem('theme');
+            if (t) document.documentElement.dataset.theme = t;
+        } catch (e) {}
+    </script>
+    <script src="js/main.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Welcome to EaglerCraftX</h1>
+    <header class="topbar">
+        <a class="brand" href="./">
+            <img src="images/eaglercommunity.png" alt="" width="32" height="32">
+            <span>EaglerCraft</span>
+        </a>
+        <button id="theme-toggle" class="icon-btn" type="button" aria-label="Toggle dark mode">
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+        </button>
     </header>
+
     <main>
-        <section class="darkmode">
-            <div class="darkmodediv">
-                <label for="darkModeCheckbox">Dark Mode</label>
-                <input type="checkbox" id="darkModeCheckbox">
+        <section class="hero">
+            <h1>Minecraft in your browser</h1>
+            <p class="lead">No downloads, no installs. Pick a version and start playing — your worlds are saved in your browser.</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="./eagler-files/wasm/1.8/Main/index.html">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    Play 1.8.8
+                </a>
+                <a class="btn btn-secondary" href="./eagler-files/1.8/Main/index.html">Play 1.8.8 (compatibility mode)</a>
             </div>
+            <p class="hint">Latest official build (u53). If the game doesn't start, try compatibility mode — it works in older browsers.</p>
         </section>
-        <section class="info">
-            <p>These clients might be outdated.</p>
-            <p>WASM usually has better performance but may not work on some browsers.</p>
-            <p>Server List and Mod List are at the bottom if you need them.</p>
-        </section>
-<div class="clientbutton">
-        <section class="clients">
-            <h2 class="pick-client">Pick a Client:</h2>
-            <label for="showModded">Show Modded Clients</label>
-            <input type="checkbox" id="showModded">
-            <div class="search-container">
-                <input type="text" id="search-bar" placeholder="Search Clients...">
-            </div>
-            <!-- Version 1.12 Section -->
-            <div id="desktopVersion112">
-                <p class="version-text">Version 1.12</p>
-                <div class="Container112">
-                    <a class="version-link filter-button" href="./eagler-files/1.12/Main/index.html">
-                        <button>Main 1.12 Client</button>
-                    </a>
-                    <a class="version-link filter-button" href="./eagler-files/wasm/1.12/Main/index.html">
-                        <button>Main 1.12 Client [WASM]</button>
-                    </a>
+
+        <section class="library" aria-labelledby="library-title">
+            <div class="library-head">
+                <h2 id="library-title">All clients</h2>
+                <div class="search">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                    <input id="search" type="search" placeholder="Search clients" autocomplete="off" aria-label="Search clients">
                 </div>
             </div>
-            <div id="desktopVersion111">
-                <p class="version-text">Version 1.11</p>
-                <div class="Container18">
-                    <a class="version-link filter-button" href="./eagler-files/1.11/eag1_11_2.html">
-                        <button>EaglercraftZ 1.11.2</button>
-                    </a>
-                </div>
+            <div class="chips" role="group" aria-label="Filter by version">
+                <button class="chip" data-filter="all" aria-pressed="true">All</button>
+                <button class="chip" data-filter="1.12" aria-pressed="false">1.12</button>
+                <button class="chip" data-filter="1.11" aria-pressed="false">1.11</button>
+                <button class="chip" data-filter="1.9" aria-pressed="false">1.9</button>
+                <button class="chip" data-filter="1.8" aria-pressed="false">1.8</button>
+                <button class="chip" data-filter="modded" aria-pressed="false">Modded</button>
             </div>
-            <div id="desktopVersion19">
-                <p class="version-text">Version 1.9</p>
-                <div class="Container18">
-                    <a class="version-link filter-button" href="./eagler-files/1.9/eag1_9_4.html">
-                        <button>EaglercraftL 1.9.4</button>
-                    </a>
-                </div>
-            </div>
-            <!-- Version 1.8 Section -->
-            <div id="desktopVersion18">
-                <p class="version-text">Version 1.8</p>
-                <div class="Container18">
-                    <a class="version-link filter-button" href="./eagler-files/1.8/Main/index.html">
-                        <button>Main 1.8 Client</button>
-                    </a>
-                    <a class="version-link filter-button" href="./eagler-files/wasm/1.8/Main/index.html">
-                        <button>Main 1.8 Client [WASM]</button>
-                    </a>
-                    <a class="version-link filter-button" href="./eagler-files/1.8/resent4.0/index.html">
-                        <button>Resent Client 4.0</button>
-                    </a>
-                    <a class="version-link filter-button" href="./eagler-files/1.8/Shadow_Client_en_US.html">
-                        <button>Shadow Client</button>
-                    </a>
-                    <a class="version-link filter-button" href="./eagler-files/1.8/AstraClient/index.html">
-                        <button>Astra Client</button>
-                    </a>
-                    <a class="version-link filter-button" href="./eagler-files/wasm/1.8/AstraClient/index.html">
-                        <button>Astra Client [WASM]</button>
-                    </a>
-                    <a class="version-link filter-button" href="./eagler-files/1.8/DragonX_V4.html">
-                        <button>DragonX V4</button>
-                    </a>
-                    <a class="version-link filter-button" href="./eagler-files/1.8/DragonXLite.html">
-                        <button>DragonX Lite</button>
-                    </a>
-                    <a class="version-link filter-button" href="./eagler-files/1.8/pi-client.html">
-                        <button>PiClient</button>
-                    </a>
-                    <a class="version-link filter-button" href="./eagler-files/1.8/Eagler-Reborn.html">
-                        <button>Eagler Reborn</button>
-                    </a>
-                </div>
-            </div>
-            <div id="moddedButtons">
-                <p class="version-text">Version 1.8 Modded Clients</p>
-                <div class="Container18">
-                    <a class="version-link filter-button" href="./eagler-files/modded/1.8/EaglerForge/index.html">
-                        <button>EaglerForge</button>
-                    </a>
-                    <a class="version-link filter-button" href="./eagler-files/modded/1.8/ef_u48_v2.7_minify.html">
-                        <button>EFI [u48 : v2.7]</button>
-                    </a>
-                    <a class="modded-buttons filter-button" href="./eagler-files/modded/1.8/Starlike/index.html">
-                        <button>Starlike Client</button>
-                    </a>
-                    <a class="modded-buttons filter-button" href="./eagler-files/modded/1.8/prism-client.html">
-                        <button>Prism Client</button>
-                    </a>
-                    <a class="modded-buttons filter-button" href="./eagler-files/modded/1.8/EaglyMC/index.html">
-                        <button>EaglyMC Client</button>
-                    </a>
-                    <a class="modded-buttons filter-button" href="./eagler-files/modded/wasm/1.8/EaglyMC/index.html">
-                        <button>EaglyMC Client [WASM]</button>
-                    </a>
-                </div>
-            </div>
-        </section>
-</div>
-        <section class="danger-zone">
-            <h3>DANGER ZONE</h3>
-            <a onclick="openClrModal();" class="clr-btn">Reset All Local Data</a>
-            <a onclick="eruda.init();">
-                <button>Devtools</button>
-            </a>
-            <div id="clr-data-model" class="modal">
-                <div class="modal-content">
-                    <h2>DANGER ZONE</h2>
-                    <p>Are you sure you want to clear all your local storage data?</p>
-                    <button>Yes</button>
-                    <button class="cancel-btn">Cancel</button>
-                </div>
-            </div>
+
+            <div id="groups"></div>
+            <p id="empty" class="empty" hidden>No clients match your search.</p>
         </section>
     </main>
+
     <footer class="footer">
-        <p>We are not affiliated with EaglerCraft, Eagtek, Microsoft, or Mojang. We solely host these clients for you to play on.</p>
-        <a href="https://github.com/killercats1/eaglercraft" class="source-btn" target="_blank">GitHub Repository</a>
-        <a href="https://servers.eaglercraft.com/" target="_blank">
-            <button class="server-list">Server List</button>
-        </a>
-        <a href="https://eaglerrinth.github.io/" target="_blank">
-            <button class="eaglerrinth-mod-list">EaglerRinth Mod List</button>
-        </a>
+        <div class="footer-links">
+            <a href="https://github.com/killercats1/eaglercraft" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://servers.eaglercraft.com/" target="_blank" rel="noopener">Server list</a>
+            <a href="https://eaglerrinth.github.io/" target="_blank" rel="noopener">Mod list</a>
+            <button type="button" class="link-btn" id="reset-open">Reset saved settings</button>
+            <button type="button" class="link-btn" id="devtools">Devtools</button>
+        </div>
+        <p class="disclaimer">Not affiliated with Mojang, Microsoft, or Eaglercraft. All clients belong to their respective authors.</p>
     </footer>
+
+    <dialog id="reset-dialog">
+        <h3>Reset saved settings?</h3>
+        <p>This clears this site's saved settings in your browser. It can't be undone.</p>
+        <div class="dialog-actions">
+            <button type="button" class="btn btn-secondary" id="reset-cancel">Cancel</button>
+            <button type="button" class="btn btn-danger" id="reset-confirm">Reset</button>
+        </div>
+    </dialog>
 </body>
 </html>

@@ -10,6 +10,9 @@ The site is plain static HTML served from the root of the `main` branch
 (Settings → Pages → Deploy from a branch → `main` / `(root)`).
 All paths are relative, so it works from the `/eaglercraft/` subpath.
 
+To add a client, put its files under `eagler-files/` and add an entry to
+`GROUPS` in `js/main.js`.
+
 ## Credits
 
 Based on the EaglercraftX Client Collections site
